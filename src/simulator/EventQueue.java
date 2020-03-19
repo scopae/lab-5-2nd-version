@@ -4,17 +4,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+public  class EventQueue<S extends State> {
+	public List<Event<S>> eventQueue = new ArrayList<>();
 
-
-public  class EventQueue<T extends State> {
-	public List<Event<T>> eventQueue = new ArrayList<>();
-
-	public void addEvent(Event<T> event) {
+	public void addEvent(Event<S> event) {
 		eventQueue.add(event);
 		Collections.sort(eventQueue);
 	}
 
-	public Event<?> nextEvent() {
+	public Event<S> nextEvent() {
 		if (hasNext()) {
 			return eventQueue.remove(0);
 		} else {
@@ -25,5 +23,4 @@ public  class EventQueue<T extends State> {
 	public boolean hasNext() {
 		return !eventQueue.isEmpty();
 	}
-	
 }

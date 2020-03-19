@@ -1,6 +1,17 @@
 package supermarket;
 
-public class SuperMarketSimulator {
-	//TODO overwrite run and add timecalulations and stuff
+import simulator.EventQueue;
+import simulator.Simulator;
 
+public class SuperMarketSimulator extends Simulator<SuperMarketState> {
+
+	public SuperMarketSimulator(SuperMarketState currentState, EventQueue<SuperMarketState> eventQueue) {
+		super(currentState, eventQueue);
+	}
+
+	@Override
+	public void run() {
+		
+	}
+	
 }

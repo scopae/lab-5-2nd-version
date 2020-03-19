@@ -9,10 +9,5 @@ public abstract class Simulator<S extends State> {
 		this.eventQueue = eventQueue;
 	}
 	
-	@SuppressWarnings("unused")
-	private void run() {
-		while(currentState.isRunning() && eventQueue.hasNext()) {
-			eventQueue.nextEvent().execute();
-		}
-	}
+	public abstract void run();
 }

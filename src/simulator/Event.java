@@ -5,7 +5,6 @@ public abstract class Event<S extends State> implements Comparable<Event<?>> {
 	private final String name;
 	public S state;
 	public EventQueue<S> eventQueue;
-	
 	public Event(double time, String name, S state, EventQueue<S> eventQueue) {
 		this.time = time;
 		this.name = name;
@@ -22,6 +21,8 @@ public abstract class Event<S extends State> implements Comparable<Event<?>> {
 	}
 	
 	public abstract void execute();
+	
+	//orders the events
 	
 	public int compareTo(Event<?> event)  {
 		return time < event.time

@@ -12,12 +12,15 @@ public class ArrivalEvent extends ShoppingEvent {
 		super(time, "Ankomst", state, eventQueue, customer);
 	}
 
-	@Override
+	/* If the store is open, and there is space adds a new customer and a new grabbingitemsevent.
+	 * If the store is open and full, it increases the counter for declined customers
+	 */
 	public void execute() {
+		if(state.isOpen) 
 		eventQueue.addEvent(new ArrivalEvent(state.nextCustomerArrival(), state, eventQueue, CustomerFactory.createCustomer()));
 		
 		if (state.customersInStore < state.maximumCustomers) {
-			eventQueue.addEvent(new GrabbingItemsEvent(0.1, state, eventQueue, customer)); // TODO: set correct time
+			eventQueue.addEvent(new GrabbingItemsEvent(state.nextGrabbingItemsTime(), state, eventQueue, customer));
 		} else {
 			state.declinedCustomers++;
 		}

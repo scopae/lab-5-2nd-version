@@ -11,7 +11,11 @@ public class LeavingEvent extends ShoppingEvent{
 		super(time, "Betalat", state, eventQueue, customer);
 	}
 
-	@Override
+	/*When a customer leaves the store adds 1 visit to the total and remove one from the current amount inside the store
+	 * if there is a queue it works through it by letting the person first in line check out one at a time.
+	 * 
+	 *
+	 */
 	public void execute() {
 		state.visits++;
 		state.customersInStore--;

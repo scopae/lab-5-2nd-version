@@ -14,7 +14,7 @@ public abstract class State extends Observable {
 		return running;
 	}
 	
-	public <T extends Event<?>> void updateObservers(T event) {
+	public void updateObservers(Event<?> event) {
 		setChanged();
 		notifyObservers(event);
 	}

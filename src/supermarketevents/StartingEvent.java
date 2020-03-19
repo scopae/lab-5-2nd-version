@@ -11,7 +11,7 @@ public class StartingEvent extends Event<SuperMarketState> {
 		super(time, "Butiken öppnar", state, eventQueue);
 	}
 
-	@Override
+	//adds the first customer arrival and creates the first arrivalEvent
 	public void execute() {
 		eventQueue.addEvent(new ArrivalEvent(state.nextCustomerArrival(), state, eventQueue, CustomerFactory.createCustomer()));
 	}

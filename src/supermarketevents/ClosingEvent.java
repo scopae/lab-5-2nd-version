@@ -11,8 +11,13 @@ public class ClosingEvent extends ShoppingEvent {
 		super(time, "Butiken stänger", state, eventQueue, customer);
 	}
 
-	@Override
+	/*Disables new arrivalevents
+	 * When all customers still remaining have left the store, stops the simulation
+	 * 
+	 * 
+	 */
 	public void execute() {
+		
 		// TODO Stäng butiken
 		state.stop();
 	}
