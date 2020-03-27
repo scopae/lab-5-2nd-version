@@ -1,9 +1,8 @@
 package supermarketevents;
+
 import simulator.Event;
 import simulator.EventQueue;
-import simulator.State;
 import supermarket.SuperMarketState;
-import customers.CustomerFactory;
 import customers.Customer;
 
 public abstract class ShoppingEvent extends Event<SuperMarketState> {

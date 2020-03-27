@@ -1,8 +1,7 @@
 package supermarketevents;
+
 import simulator.EventQueue;
-import simulator.State;
 import supermarket.SuperMarketState;
-import customers.CustomerFactory;
 import customers.Customer;
 
 public class ClosingEvent extends ShoppingEvent {
@@ -11,15 +10,15 @@ public class ClosingEvent extends ShoppingEvent {
 		super(time, "Butiken stänger", state, eventQueue, customer);
 	}
 
-	/*Disables new arrivalevents
-	 * When all customers still remaining have left the store, stops the simulation
-	 * 
-	 * 
+	/**
+	 * Disables new arrivalevents
 	 */
 	public void execute() {
+		state.open = false;
 		
-		// TODO Stäng butiken
-		state.stop();
+		if (state.customersInStore == 0) {
+			eventQueue.addEvent(new StopEvent(time, state, eventQueue));
+		}
 	}
 
 }

@@ -3,7 +3,6 @@ package supermarketevents;
 import supermarket.SuperMarketState;
 import simulator.EventQueue;
 import customers.Customer;
-import customers.CustomerFactory;
 
 public class ArrivalEvent extends ShoppingEvent {
 	
@@ -16,8 +15,9 @@ public class ArrivalEvent extends ShoppingEvent {
 	 * If the store is open and full, it increases the counter for declined customers
 	 */
 	public void execute() {
-		if(state.isOpen) 
-		eventQueue.addEvent(new ArrivalEvent(state.nextCustomerArrival(), state, eventQueue, CustomerFactory.createCustomer()));
+		if(state.open) {
+			eventQueue.addEvent(new ArrivalEvent(state.nextCustomerArrival(), state, eventQueue, state.customerFactory.createCustomer()));
+		}
 		
 		if (state.customersInStore < state.maximumCustomers) {
 			eventQueue.addEvent(new GrabbingItemsEvent(state.nextGrabbingItemsTime(), state, eventQueue, customer));

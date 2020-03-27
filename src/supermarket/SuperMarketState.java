@@ -1,37 +1,35 @@
 package supermarket;
 
 import customers.Customer;
+import customers.CustomerFactory;
 import random.ExponentialRandomStream;
 import random.UniformRandomStream;
 import simulator.State;
 
 public class SuperMarketState extends State {
-	public boolean isOpen = true;
+	public boolean open = true;
 	
 	public final int totalCheckouts = 2;
-	public int	availableCheckouts = 2;
-	
+	public int availableCheckouts = 2;
+
+	public final int seed = 1234;
+	public final double lambda = 4;
 	public final double lowestCheckoutTime = 1.0;
 	public final double highestCheckoutTime = 4.0;
 	public final double lowestGrabbingItemsTime = 3.0;
 	public final double highestGrabbingItemsTime = 8.0;
 	
-	public final double grossQueueTime = 0.00;
-	public final double grossIdleTime = 0.00;
-	
-	public double formerCurrentTime = 0.00;
-	public double formerGrossQueueTime = 0.00;
-	
-	public double lambda = 4;
-	public final int seed = 1234;
+	public double accumulatedQueueTime = 0.00;
+	public double accumulatedIdleTime = 0.00;
 	
 	public int visits;
 	public int maximumCustomers;
 	public int customersInStore;
 	public int declinedCustomers;
 	
-	public FIFO<Customer> checkoutQueue = new FIFO<Customer>();
+	public CustomerFactory customerFactory = new CustomerFactory();
 	
+	public FIFO<Customer> checkoutQueue = new FIFO<Customer>();
 	  
 	 // Sets the boundaries for what the time variations can be picked from
 	private UniformRandomStream checkoutTime = new UniformRandomStream(lowestCheckoutTime, highestCheckoutTime, seed);

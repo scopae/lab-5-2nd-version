@@ -1,8 +1,8 @@
 package simulator;
 
 public abstract class Event<S extends State> implements Comparable<Event<?>> {
-	private final double time;
-	private final String name;
+	public final double time;
+	public final String name;
 	public S state;
 	public EventQueue<S> eventQueue;
 	public Event(double time, String name, S state, EventQueue<S> eventQueue) {
@@ -10,10 +10,6 @@ public abstract class Event<S extends State> implements Comparable<Event<?>> {
 		this.name = name;
 		this.state = state;
 		this.eventQueue = eventQueue;
-	}
-	
-	public double  getCurrentTime () {
-		return time;
 	}
 	
 	public String getEventName() {

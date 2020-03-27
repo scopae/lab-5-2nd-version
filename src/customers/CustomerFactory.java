@@ -1,9 +1,9 @@
 package customers;
 
 public class CustomerFactory {
-	private static int customerID =  0;
+	private int customerID =  0;
 	
-	public static Customer createCustomer() {
+	public Customer createCustomer() {
 		return new Customer(customerID++);
 	}
 }
